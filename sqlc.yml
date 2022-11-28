@@ -7,3 +7,7 @@ sql:
       go:
         package: "model"
         out: "model"
+      json:
+        filename: "model.json"
+        out: "tmp"
+        
