@@ -11,8 +11,8 @@ import (
 	"github.com/google/uuid"
 )
 
-const createText = `-- name: CreateText :exec
-INSERT INTO texts(uuid, title, body) VALUES (gen_random_uuid(), $1, $2)
+const createText = `-- name: CreateText :one
+INSERT INTO texts(uuid, title, body) VALUES (gen_random_uuid(), $1, $2) RETURNING uuid
 `
 
 type CreateTextParams struct {
@@ -20,9 +20,11 @@ type CreateTextParams struct {
 	Body  string
 }
 
-func (q *Queries) CreateText(ctx context.Context, arg CreateTextParams) error {
-	_, err := q.db.ExecContext(ctx, createText, arg.Title, arg.Body)
-	return err
+func (q *Queries) CreateText(ctx context.Context, arg CreateTextParams) (uuid.UUID, error) {
+	row := q.db.QueryRowContext(ctx, createText, arg.Title, arg.Body)
+	var uuid uuid.UUID
+	err := row.Scan(&uuid)
+	return uuid, err
 }
 
 const getText = `-- name: GetText :one
