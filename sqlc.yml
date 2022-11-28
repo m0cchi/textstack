@@ -6,4 +6,4 @@ sql:
     gen:
       go:
         package: "model"
-        out: "."
+        out: "model"
