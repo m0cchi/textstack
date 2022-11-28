@@ -4,23 +4,23 @@ package textstack_rpc;
 
 service Textstack {
 
-	rpc GetText(GetTextRequest) returns (GetTextResponse) {};
-	rpc CreateText(CreateTextRequest) returns (CreateTextResponse) {};
+    rpc GetText(GetTextRequest) returns (GetTextResponse) {};
+    rpc CreateText(CreateTextRequest) returns (CreateTextResponse) {};
 }
 message GetTextResponse {
-	int32 id = 1
-	string uuid = 2
-	string title = 3
-	string body = 4
+    int32 id = 1
+    string uuid = 2
+    string title = 3
+    string body = 4
 }
 message GetTextRequest {
-	string uuid = 1
+    string uuid = 1
 }
 message CreateTextResponse {
-	string uuid = 1
+    string uuid = 1
 }
 message CreateTextRequest {
-	string title = 1
-	string body = 2
+    string title = 1
+    string body = 2
 }
 

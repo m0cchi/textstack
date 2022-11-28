@@ -21,7 +21,7 @@ class Protobuf:
   def to_s_rpc_definitions(self):
     buf = ""
     for api in self.apis:
-      buf += "\n\trpc {api_name}({api_name}Request) returns ({api_name}Response) {{}};".format(
+      buf += "\n    rpc {api_name}({api_name}Request) returns ({api_name}Response) {{}};".format(
         api_name=api["name"]
       )
     return buf
@@ -32,7 +32,7 @@ class Protobuf:
     count = 0
     for p in parametors:
       count += 1
-      buf += "\n\t{type} {name} = {count}".format(
+      buf += "\n    {type} {name} = {count}".format(
         type=p["type"],
         name=p["name"],
         count=count
