@@ -32,7 +32,7 @@ class Protobuf:
     count = 0
     for p in parametors:
       count += 1
-      buf += "\n    {type} {name} = {count}".format(
+      buf += "\n    {type} {name} = {count};".format(
         type=p["type"],
         name=p["name"],
         count=count
@@ -60,8 +60,8 @@ class Protobuf:
 
 
 def validate():
-  if len(sys.argv) != 5:
-    print("python3 generator.py type.json protobuf service_name package_name, your argv[{}]".format(sys.argv))
+  if len(sys.argv) != 4:
+    print("python3 generator.py type.json protobuf service_name, your argv[{}]".format(sys.argv))
     exit(1)
 
   type_json_path = sys.argv[1]
@@ -117,7 +117,6 @@ if __name__ == "__main__":
   type_json_path = sys.argv[1]
   protobuf_path = sys.argv[2]
   service_name = sys.argv[3]
-  package_name = sys.argv[4]
 
   with open(type_json_path, "r") as type_json_file, open(protobuf_path, "w") as protobuf_file:
     protobuf = Protobuf(service_name)
@@ -128,10 +127,10 @@ if __name__ == "__main__":
       
     protobuf_str = """
 syntax = "proto3";
-package {};
+option go_package = "github.com/m0cchi/textstack/rpc";
 
 {}
-""".format(package_name, str(protobuf))
+""".format(str(protobuf))
 
     protobuf_file.write(protobuf_str)
 
