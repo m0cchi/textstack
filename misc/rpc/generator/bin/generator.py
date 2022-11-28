@@ -127,7 +127,7 @@ if __name__ == "__main__":
       
     protobuf_str = """
 syntax = "proto3";
-option go_package = "github.com/m0cchi/textstack/rpc";
+option go_package = "github.com/m0cchi/textstack/proto";
 
 {}
 """.format(str(protobuf))

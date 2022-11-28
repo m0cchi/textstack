@@ -4,7 +4,7 @@
 // - protoc             v3.21.7
 // source: proto/textstack.proto
 
-package rpc
+package proto
 
 import (
 	context "context"
