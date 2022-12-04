@@ -4,8 +4,33 @@ option go_package = "github.com/m0cchi/textstack/proto";
 
 service Textstack {
 
+    rpc ListTagsByUUID(ListTagsByUUIDRequest) returns (ListTagsByUUIDResponse) {};
+    rpc ListTagsByName(ListTagsByNameRequest) returns (ListTagsByNameResponse) {};
+    rpc CreateTag(CreateTagRequest) returns (CreateTagResponse) {};
     rpc GetText(GetTextRequest) returns (GetTextResponse) {};
     rpc CreateText(CreateTextRequest) returns (CreateTextResponse) {};
+}
+message ListTagsByUUIDResponse {
+    int32 id = 1;
+    string text_uuid = 2;
+    string name = 3;
+}
+message ListTagsByUUIDRequest {
+    string text_uuid = 1;
+}
+message ListTagsByNameResponse {
+    int32 id = 1;
+    string text_uuid = 2;
+    string name = 3;
+}
+message ListTagsByNameRequest {
+    string name = 1;
+}
+message CreateTagResponse {
+}
+message CreateTagRequest {
+    string text_uuid = 1;
+    string name = 2;
 }
 message GetTextResponse {
     int32 id = 1;
