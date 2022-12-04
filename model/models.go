@@ -8,6 +8,12 @@ import (
 	"github.com/google/uuid"
 )
 
+type Tag struct {
+	ID       int32
+	TextUuid uuid.UUID
+	Name     string
+}
+
 type Text struct {
 	ID    int32
 	Uuid  uuid.UUID
